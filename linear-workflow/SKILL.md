@@ -1,49 +1,69 @@
 ---
 name: linear-workflow
-description: ALWAYS check for linked Linear issue and follow conventions before starting work. Use when on a feature branch, when beginning any coding task, or when in plan mode.
+description: Use Linear as the work-tracking source of truth before and during implementation. Trigger before coding, planning, or branch changes when work may map to a Linear issue.
 ---
 
 # Linear Workflow
 
-**MANDATORY:** Linear is the source of truth for planning, implementation status, blockers, and verification, not GitHub. Check for a linked Linear issue before starting work, and keep it current throughout the task. Linear–GitHub integration depends on correct branch names and issue updates.
+Use this skill whenever work should be tracked in Linear. The goal is simple: identify the right issue, move it into active work, and keep the issue current enough that another engineer can understand status, scope, blockers, and validation without reconstructing the session.
 
-## When to Use (invoke this skill FIRST)
+## When To Use
 
-- **Every** coding task, fix, or implementation—before any other actions
-- **Plan mode**—when creating, writing, or drafting a plan (e.g. `.plan.md`). Do not skip Linear updates because you are "only planning."
-- When switching to a new branch
-- When the user asks you to implement, fix, change something, or create a plan
+- Before any coding task, fix, implementation, or technical plan
+- When starting work on a branch that may correspond to a tracked issue
+- When the user references a Linear issue directly
+- When scope changes, blockers appear, or work splits into follow-up issues
 
-**Do not skip.** If you will edit code or create plans, invoke this skill and complete the workflow before touching files.
+If the task is clearly untracked and no relevant issue exists, confirm that quickly and proceed. Do not force Linear usage where it does not apply, but always check first.
 
 ## Instructions
 
-1. **Check branch** via `git branch --show-current`. Parse for Linear ID (e.g. `FEDI-123`, `PROJ-456`). Valid patterns: `FEDI-123-feature-name`, `sam/FEDI-456-fix`, `CountableNewt/issue92-feature-name`.
+1. **Identify the current work item first.**
+Check the current branch and the user request for a Linear identifier. If one is not explicit, search Linear using the branch name, task summary, or nearby issue wording until you either find the matching issue or determine that none exists.
 
-2. **If no Linear ID but branch has GitHub issue** (e.g. `issue92`): Every GitHub issue has a Linear comment linking the issue. Use `list_issues` with a `query` matching the branch/task to find the linked Linear issue.
+2. **Confirm the issue before doing work.**
+Open the issue and verify it is the correct scope. If the issue is ambiguous, stale, or clearly mismatched to the requested work, raise that early instead of silently proceeding under the wrong ticket.
 
-3. **Confirm issue exists** via Linear MCP `get_issue` or `list_issues`.
+3. **Move active work into the appropriate status.**
+When you begin planning or implementation, set the issue to the team's active working state such as `In Progress`. Do this before making code changes unless the team intentionally uses a different workflow.
 
-4. **Set In Progress** via `save_issue` with `state: "In Progress"` before making code changes or creating plans.
+4. **Record the plan when it becomes concrete.**
+If you develop a non-trivial approach, leave a concise comment on the issue describing the implementation plan, major decisions, or expected risks. The comment should help a reviewer or teammate understand what is about to happen.
 
-5. **During planning**: Add comments via `save_comment`—when drafting a plan, summarize the approach or key decisions on the Linear issue.
+5. **Keep Linear updated at decision points, not just at the end.**
+Add comments when scope changes, blockers appear, assumptions are invalidated, work is handed off, or verification reveals unexpected behavior. Prefer short, meaningful updates over noisy status spam.
 
-6. **During implementation**: Include the full plan via `save_comment`—when implementing from a `.plan.md` file, paste the **entire plan content** as a Linear comment so reviewers have full context.
+6. **Split newly discovered work deliberately.**
+If you uncover additional work that should not be silently folded into the current issue, create or link a follow-up issue and note the relationship. Use a sub-issue only when the child work is truly part of the parent scope; otherwise create a separate related issue.
 
-7. **Add comments as you work** via `save_comment`—implementations, decisions, blockers.
+7. **Fill in metadata when you can do so confidently.**
+If labels, priority, project, estimate, assignee, dependencies, or related issues are obvious from context, add or correct them. Do not guess at metadata that could misroute ownership or planning.
 
-8. **Keep Linear current continuously**. If scope, status, blockers, implementation details, or verification results change, update the issue before continuing.
+8. **Capture verification before closing your loop.**
+When implementation is complete, leave a brief note summarizing what changed and how it was verified. Include the important checks you actually ran, especially if coverage is partial or a known risk remains.
 
-9. **Handle newly discovered issues explicitly**. If the current branch introduced the regression, create a Linear sub-issue under the current issue and note that split on the parent issue before continuing. If you discover a separate issue that is not a regression from the current branch, create a separate Linear issue rather than a sub-issue and note that split on the parent issue before continuing.
+9. **Let team policy determine final closure.**
+If the team's workflow closes issues on merge, hand off by moving the issue to the appropriate review state rather than marking it `Done` yourself. If the team expects manual closure, follow that convention explicitly.
 
-10. **Apply labels, assignee, and metadata when an agent creates the issue**. Use the `Agent` label in MCP calls for any issue created by an agent through Codex, even when the underlying problem was reported by the user during the session. In Linear UI this may appear under the `Source` group. Assign the issue to the human Linear user by default; in this workspace that is currently `Sam Clemente`. Also add the other relevant inferred metadata from the current context when it is clear, including product or platform labels, project association, priority, and any area labels that match the affected surface.
+10. **If no issue exists, say that plainly.**
+When work is intentionally untracked, or you cannot find a relevant issue after a reasonable check, proceed without fabricating one unless the user or team workflow requires issue creation.
 
-11. **If work is tracked in a split issue, comment there**. Put the plan, implementation progress, blockers, verification notes, and completion summary on the sub-issue or separate issue itself. Use the parent issue only for the split note and high-level coordination.
+## Operating Notes
 
-12. **Do not mark Done**—let Linear–GitHub integration set Done when the PR is merged.
+- Prefer the Linear tools available in the current environment rather than hard-coding one integration path.
+- Use branch names and commit/PR context as clues, not as the source of truth.
+- Keep comments concise and decision-oriented. Linear should explain the work, not mirror every terminal action.
+- Escalate early when the requested change and the issue scope do not match.
 
-If no Linear issue exists (e.g. branch is `main` or doesn’t match patterns), proceed without Linear updates—but **always check first**.
+## Outcome
+
+By the time you finish using this skill, the current task should have:
+
+- A confirmed Linear issue, or an explicit determination that no issue applies
+- An accurate active status while work is underway
+- Useful comments for plan, scope changes, blockers, and verification
+- Clean issue relationships and metadata when follow-up work is discovered
 
 ## Reference
 
-See [AGENTS.md](../../../AGENTS.md) for the full workflow.
+See [AGENTS.md](../AGENTS.md) for the full workflow.
