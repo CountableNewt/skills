@@ -1,0 +1,15 @@
+interface:
+  display_name: "Notion Project Documentation"
+  short_description: "Store project docs as Notion subpages"
+  default_prompt: "Use $notion-project-documentation to store this project documentation in Notion under the correct project page and ask if the parent page is unclear."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "notion"
+      description: "Notion MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.notion.com/mcp"
+
+policy:
+  allow_implicit_invocation: true

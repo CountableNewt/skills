@@ -24,6 +24,16 @@ This repo is a central skills repository. Use it to discover and apply skills wh
 
 ---
 
+### notion-project-documentation
+
+**When to use:** When the user wants to create, update, or store project documentation such as docs, wiki pages, specs, ADRs, runbooks, guides, FAQs, notes, or knowledge capture.
+
+**What it does:** Routes project documentation into Notion subpages under the project page through the Notion MCP server. Searches for the correct parent page first, updates existing matching docs when possible, and asks the user to choose the parent page when it is ambiguous or missing.
+
+**Path:** [notion-project-documentation/SKILL.md](notion-project-documentation/SKILL.md)
+
+---
+
 ## When working in this repo
 
 - **New skills:** Create `skill-name/SKILL.md` with YAML frontmatter (`name`, `description`) and markdown instructions.
