@@ -11,6 +11,7 @@ Skills are markdown files that teach AI agents specialized workflows. Each skill
 | Skill | Description | Path |
 |-------|-------------|------|
 | linear-workflow | Linear as source of truth for planning and status. Check branch for Linear ID, set In Progress, add comments during work. Use before coding or planning. | `linear-workflow/` |
+| supabase-best-practices | Supabase and Postgres schema discipline. Prefer BCNF or 3NF, require committed migrations, and keep local init/reset reproducible through migrations. | `supabase-best-practices/` |
 
 ## Using skills in other projects
 
@@ -22,6 +23,7 @@ Skills are markdown files that teach AI agents specialized workflows. Each skill
 Example:
 ```bash
 cp -r linear-workflow ~/.cursor/skills/
+cp -r supabase-best-practices ~/.cursor/skills/
 ```
 
 **Future:** A custom MCP server will provide centralized installation.
