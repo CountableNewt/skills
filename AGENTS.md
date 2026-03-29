@@ -14,6 +14,16 @@ This repo is a central skills repository. Use it to discover and apply skills wh
 
 ---
 
+### supabase-best-practices
+
+**When to use:** When work touches Supabase or Postgres schema design, migrations, `supabase db` flows, normalization, or local reset/init behavior.
+
+**What it does:** Enforces Postgres-first schema design, pushes for BCNF or at least 3NF, requires committed migrations for schema changes, and requires local init/reset flows to apply migrations reproducibly.
+
+**Path:** [supabase-best-practices/SKILL.md](supabase-best-practices/SKILL.md)
+
+---
+
 ## When working in this repo
 
 - **New skills:** Create `skill-name/SKILL.md` with YAML frontmatter (`name`, `description`) and markdown instructions.
