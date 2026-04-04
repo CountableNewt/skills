@@ -34,6 +34,16 @@ This repo is a central skills repository. Use it to discover and apply skills wh
 
 ---
 
+### skills-contribution-workflow
+
+**When to use:** When improving or suggesting changes to skills in this repo, when a conversation implies a new skill, when choosing project-local vs central placement, or when authoring with MyContextProtocol/MCP in mind.
+
+**What it does:** Routes proposals through Linear under the Skills team (issues sync into the repo; agents do not use GitHub for issue tracking). Classifies whether a skill stays in a consumer repo or belongs in countablenewt/skills. Reminds authors that skills here are published via MyContextProtocol as MCP endpoints and should read as stable contracts.
+
+**Path:** [skills-contribution-workflow/SKILL.md](skills-contribution-workflow/SKILL.md)
+
+---
+
 ## When working in this repo
 
 - **New skills:** Create `skill-name/SKILL.md` with YAML frontmatter (`name`, `description`) and markdown instructions.
