@@ -12,6 +12,7 @@ Skills are markdown files that teach AI agents specialized workflows. Each skill
 |-------|-------------|------|
 | linear-workflow | Linear as source of truth for planning and status. Check branch for Linear ID, set In Progress, add comments during work. Use before coding or planning. | `linear-workflow/` |
 | notion-project-documentation | Route project documentation into Notion subpages under the project page. Search for the right parent page, update matching docs when they exist, and ask when the parent is ambiguous. | `notion-project-documentation/` |
+| skills-contribution-workflow | Propose skill changes and new skills via Linear (Skills team); classify local vs central skills; note MyContextProtocol MCP exposure. | `skills-contribution-workflow/` |
 | supabase-best-practices | Supabase and Postgres schema discipline. Prefer BCNF or 3NF, require committed migrations, and keep local init/reset reproducible through migrations. | `supabase-best-practices/` |
 
 ## Using skills in other projects
