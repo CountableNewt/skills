@@ -14,6 +14,7 @@ Skills are markdown files that teach AI agents specialized workflows. Each skill
 | notion-project-documentation | Route project documentation into Notion subpages under the project page. Search for the right parent page, update matching docs when they exist, and ask when the parent is ambiguous. | `notion-project-documentation/` |
 | skills-contribution-workflow | Propose skill changes and new skills via Linear (Skills team); classify local vs central skills; note MyContextProtocol MCP exposure. | `skills-contribution-workflow/` |
 | supabase-best-practices | Supabase and Postgres schema discipline. Prefer BCNF or 3NF, require committed migrations, and keep local init/reset reproducible through migrations. | `supabase-best-practices/` |
+| swift-strict-concurrency | Swift 6 strict concurrency and warnings-as-errors discipline for Vapor/server-side Swift and iOS/Xcode projects. Keep build output warning-free, fix surfaced warnings inline when safe, and track follow-up work when they cannot be resolved in-task. | `swift-strict-concurrency/` |
 
 ## Using skills in other projects
 
@@ -27,6 +28,7 @@ Example:
 cp -r linear-workflow ~/.cursor/skills/
 cp -r notion-project-documentation ~/.cursor/skills/
 cp -r supabase-best-practices ~/.cursor/skills/
+cp -r swift-strict-concurrency ~/.cursor/skills/
 ```
 
 **Future:** A custom MCP server will provide centralized installation.

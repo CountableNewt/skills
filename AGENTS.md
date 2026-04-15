@@ -44,6 +44,16 @@ This repo is a central skills repository. Use it to discover and apply skills wh
 
 ---
 
+### swift-strict-concurrency
+
+**When to use:** When working in Swift 6 mode, strict concurrency, or warnings-as-errors workflows for Vapor/server-side Swift or iOS/Xcode Swift projects.
+
+**What it does:** Enforces warning-free Swift work under strict concurrency. Agents must not introduce warnings, must treat surfaced warnings as in scope, must prefer actor isolation and `Sendable` fixes over suppression, and must track warnings they cannot safely resolve inline.
+
+**Path:** [swift-strict-concurrency/SKILL.md](swift-strict-concurrency/SKILL.md)
+
+---
+
 ## When working in this repo
 
 - **New skills:** Create `skill-name/SKILL.md` with YAML frontmatter (`name`, `description`) and markdown instructions.
