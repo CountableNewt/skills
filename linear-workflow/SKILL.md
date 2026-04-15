@@ -19,7 +19,7 @@ If the task is clearly untracked and no relevant issue exists, confirm that quic
 ## Instructions
 
 1. **Identify the current work item first.**
-Check the current branch and the user request for a Linear identifier. If one is not explicit, search Linear using the branch name, task summary, or nearby issue wording until you either find the matching issue or determine that none exists.
+Check the current branch and the user request for a Linear identifier. If one is not explicit, search Linear using the branch name, task summary, or nearby issue wording until you either find the matching issue or determine that none exists. If the branch follows a team pattern such as `TEAM-123-short-description`, treat that identifier as a clue rather than as the source of truth. If the branch or request points at another tracker, follow the consuming repo's documented bridge back to Linear instead of assuming how that mapping works.
 
 2. **Confirm the issue before doing work.**
 Open the issue and verify it is the correct scope. If the issue is ambiguous, stale, or clearly mismatched to the requested work, raise that early instead of silently proceeding under the wrong ticket.
@@ -28,7 +28,7 @@ Open the issue and verify it is the correct scope. If the issue is ambiguous, st
 When you begin planning or implementation, set the issue to the team's active working state such as `In Progress`. Do this before making code changes unless the team intentionally uses a different workflow.
 
 4. **Record the plan when it becomes concrete.**
-If you develop a non-trivial approach, leave a concise comment on the issue describing the implementation plan, major decisions, or expected risks. The comment should help a reviewer or teammate understand what is about to happen.
+If you develop a non-trivial approach, leave a comment on the issue describing the implementation plan, major decisions, or expected risks. Use a concise summary for routine or narrowly scoped work. When the change is cross-cutting, high-risk, or expected to be reviewed primarily in Linear, post the full plan or attach/link the plan artifact instead. The comment should help a reviewer or teammate understand what is about to happen.
 
 5. **Keep Linear updated at decision points, not just at the end.**
 Add comments when scope changes, blockers appear, assumptions are invalidated, work is handed off, or verification reveals unexpected behavior. Prefer short, meaningful updates over noisy status spam.
@@ -37,7 +37,7 @@ Add comments when scope changes, blockers appear, assumptions are invalidated, w
 If you uncover additional work that should not be silently folded into the current issue, create or link a follow-up issue and note the relationship. Use a sub-issue only when the child work is truly part of the parent scope; otherwise create a separate related issue.
 
 7. **Fill in metadata when you can do so confidently.**
-If labels, priority, project, estimate, assignee, dependencies, or related issues are obvious from context, add or correct them. Do not guess at metadata that could misroute ownership or planning.
+If labels, priority, project, estimate, assignee, dependencies, or related issues are obvious from context, add or correct them. When creating a new issue, apply the team's documented defaults from the consuming repo or workspace if they exist. Do not guess at metadata that could misroute ownership or planning, and do not invent routing when defaults are missing or unclear.
 
 8. **Capture verification before closing your loop.**
 When implementation is complete, leave a brief note summarizing what changed and how it was verified. Include the important checks you actually ran, especially if coverage is partial or a known risk remains.
@@ -51,8 +51,10 @@ When work is intentionally untracked, or you cannot find a relevant issue after 
 ## Operating Notes
 
 - Prefer the Linear tools available in the current environment rather than hard-coding one integration path.
+- When a consumer repo documents Linear MCP usage, name the actual tool names exposed in that environment rather than copying names from another repo or skill.
 - Use branch names and commit/PR context as clues, not as the source of truth.
 - Keep comments concise and decision-oriented. Linear should explain the work, not mirror every terminal action.
+- Verification is part of the default bar before handoff or review, not optional polish after the code is already "done."
 - Escalate early when the requested change and the issue scope do not match.
 
 ## Outcome
@@ -62,8 +64,11 @@ By the time you finish using this skill, the current task should have:
 - A confirmed Linear issue, or an explicit determination that no issue applies
 - An accurate active status while work is underway
 - Useful comments for plan, scope changes, blockers, and verification
+- Verification notes that explain what changed and how it was checked before handoff or review
 - Clean issue relationships and metadata when follow-up work is discovered
 
 ## Reference
 
-See [AGENTS.md](../AGENTS.md) for the full workflow.
+Primary reference: [AGENTS.md on GitHub](https://github.com/CountableNewt/skills/blob/main/AGENTS.md)
+
+When using this skill inside this repository, see the local [AGENTS.md](../AGENTS.md) for the same workflow and any repo-specific extensions. Consumer repos may mirror or extend that guidance in their own `AGENTS.md`.
