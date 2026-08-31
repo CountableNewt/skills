@@ -23,7 +23,7 @@ Skills in this repository ([countablenewt/skills](https://github.com/countablene
 
 ## Placement: project vs central repository
 
-**Keep the skill in the consumer project** (for example `.cursor/skills/<name>/` in that repo) when:
+**Keep the skill in the consumer project** (for example `.agents/skills/<name>/` in that repo) when:
 
 - It is tightly coupled to one codebase, stack, or deployment.
 - It contains proprietary or client-specific context.
@@ -41,7 +41,7 @@ Filing the proposal is always in **Linear** (see below), not through a separate 
 
 **Linear is the system of record** for skill suggestions and new-skill proposals. Issues may **sync into this Git repository** for visibility; humans might see them on GitHub or in a clone. **Agents must create and update work in Linear only**—do not open or manage issues through GitHub as a parallel process.
 
-1. Follow [linear-workflow/SKILL.md](../linear-workflow/SKILL.md): identify or create the right issue, confirm scope, set active status, and comment as the plan solidifies.
+1. Activate the available Linear workflow guidance: identify or create the right issue, confirm scope, set active status, and comment as the plan solidifies.
 2. **Associate work with the Skills team** in Linear when creating or linking issues for this repository (use the team field, project, or labels your workspace uses for the Skills team—whichever applies).
 3. **Suggestions to existing skills** — In the Linear issue or a comment, include:
    - Skill path (for example `linear-workflow/SKILL.md`).
