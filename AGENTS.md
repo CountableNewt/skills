@@ -54,18 +54,29 @@ This repo is a central skills repository. Use it to discover and apply skills wh
 
 ---
 
+### ui-grammar
+
+**When to use:** When reviewing, writing, or fixing user-facing interface text, especially labels, buttons, headings, and count-driven copy.
+
+**What it does:** Applies consistent title case to interface labels and ensures singular, plural, and verb agreement are derived from runtime counts.
+
+**Path:** [ui-grammar/SKILL.md](ui-grammar/SKILL.md)
+
+---
+
 ## When working in this repo
 
-- **New skills:** Create `skill-name/SKILL.md` with YAML frontmatter (`name`, `description`) and markdown instructions.
+- **New skills:** Create `skill-name/SKILL.md` with standard Agent Skills YAML frontmatter (`name`, `description`) and markdown instructions.
 - **Conventions:** Follow [linear-workflow/SKILL.md](linear-workflow/SKILL.md).
 - **Descriptions:** Keep them specific and include trigger terms so agents know when to apply the skill.
+- **Runtime policy:** Put MyContextProtocol routing and enforcement in `.mycontext/skills.yaml`; keep `SKILL.md` portable.
 - **Updates:** Add new skills to the catalog in this file and to the README.
 
 ## Pulling skills to other projects
 
 When helping users install skills from this repo:
 
-1. Copy the skill directory into `.cursor/skills/<skill-name>/` (project) or `~/.cursor/skills/<skill-name>/` (global).
-2. Restart Cursor to pick up new skills.
+1. Copy the complete skill directory into `.agents/skills/<skill-name>/` for a project, or into the agent's supported global skill directory.
+2. Restart or reload the consuming agent if it does not watch skill directories.
 
-**Future:** An MCP server will provide centralized installation.
+MyContextProtocol also exposes the packages as MCP resources for agents that do not install them locally.

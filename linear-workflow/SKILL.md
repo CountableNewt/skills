@@ -69,6 +69,4 @@ By the time you finish using this skill, the current task should have:
 
 ## Reference
 
-Primary reference: [AGENTS.md on GitHub](https://github.com/CountableNewt/skills/blob/main/AGENTS.md)
-
-When using this skill inside this repository, see the local [AGENTS.md](../AGENTS.md) for the same workflow and any repo-specific extensions. Consumer repos may mirror or extend that guidance in their own `AGENTS.md`.
+Consumer repositories may extend this workflow in their own `AGENTS.md`. Treat the consuming repository's instructions as authoritative when they are more specific.

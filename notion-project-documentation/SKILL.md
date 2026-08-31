@@ -5,7 +5,7 @@ description: Route project documentation into Notion subpages under the project 
 
 # Notion Project Documentation
 
-Use this skill when the user wants to create, update, or store project documentation. The default rule is that project documentation belongs in Notion as subpages under the project's Notion page, created or updated through the Notion MCP server rather than local docs files.
+Use this skill when the user wants to create, update, or store project documentation. The default rule is that project documentation belongs in Notion as subpages under the project's Notion page, created or updated through an available Notion capability rather than local docs files.
 
 ## Quick start
 1. Determine whether the request is documentation work: spec, wiki page, runbook, ADR, guide, FAQ, notes, decision log, project documentation, or knowledge capture.
@@ -23,15 +23,9 @@ Use this skill when the user wants to create, update, or store project documenta
 
 ## Workflow
 
-### 0) If any MCP call fails because Notion MCP is not connected, pause and set it up
-1. Add the Notion MCP:
-   - `codex mcp add notion --url https://mcp.notion.com/mcp`
-2. Enable remote MCP client:
-   - Set `[features].rmcp_client = true` in `config.toml` or run `codex --enable rmcp_client`
-3. Log in with OAuth:
-   - `codex mcp login notion`
+### 0) If a required Notion capability is unavailable, stop truthfully
 
-After successful login, tell the user to restart Codex and retry the documentation task.
+Ask the user to select or connect a provider that can search, read, create, and update Notion pages. Do not claim a connection was configured, or prescribe a client-specific setup command, unless the active agent exposes and performs that capability.
 
 ### 1) Decide whether this skill applies
 Use this skill when the user is asking to write or store documentation that should remain discoverable for a project or team. Common triggers:
@@ -64,8 +58,8 @@ Before creating anything new:
 Prefer updating an existing document when the new request is clearly a revision, continuation, or deeper version of the same topic.
 
 ### 4) Create or update the documentation page
-- Use `Notion:notion-create-pages` with the resolved project page as the parent when creating a new document.
-- Use `Notion:notion-update-page` when updating an existing page.
+- Use the bound Notion page-create capability with the resolved project page as the parent when creating a new document.
+- Use the bound Notion page-update capability when updating an existing page.
 - Structure the page so it is useful to future readers: summary, context, key decisions, steps, links, owners, dates, or open questions as appropriate to the document type.
 - When useful, include backlinks or mentions to related project pages, specs, tasks, or decision records.
 

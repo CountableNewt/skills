@@ -1,0 +1,228 @@
+version: 1
+skills:
+  linear-workflow:
+    metadata:
+      exposure: resource
+      kind: operating
+      scope: workspace
+      activation:
+        mode: always
+        intents:
+          - track implementation work
+          - plan work linked to an issue
+          - update project status and verification
+        events:
+          - task.started
+          - scope.changed
+          - blocker.detected
+          - verification.completed
+        tags:
+          - project-management
+          - issue-tracking
+        examples:
+          - Start implementing the feature linked to the current branch.
+          - Create a follow-up issue for the unrelated defect found during verification.
+      avoid_when:
+        - The request is a trivial self-contained answer with no implementation, plan, or tracked project work.
+        - The repository explicitly uses a different issue tracker and provides no Linear bridge.
+      enforcement: required
+      priority: 100
+      requires:
+        - capability: issue.search
+          required: true
+          on_missing: return_draft
+        - capability: issue.update
+          required: true
+          on_missing: return_draft
+        - capability: issue.create
+          required: false
+          on_missing: return_draft
+      conflicts_with: []
+
+  notion-project-documentation:
+    metadata:
+      exposure: resource
+      kind: tool-use
+      scope: task
+      activation:
+        mode: intent
+        intents:
+          - create or update project documentation
+          - capture a specification, decision, runbook, or project note
+          - organize durable project knowledge in Notion
+        events:
+          - documentation.requested
+          - decision.recorded
+        tags:
+          - documentation
+          - notion
+        examples:
+          - Turn these architecture decisions into an ADR under the project page.
+          - Update the existing deployment runbook with the new rollback steps.
+      avoid_when:
+        - The user explicitly requests only a local repository document.
+        - The output is an ephemeral draft with no request to store or publish it.
+        - No unambiguous parent project page is available.
+      enforcement: required
+      priority: 85
+      requires:
+        - capability: knowledge.search
+          required: true
+          on_missing: request_provider_selection
+        - capability: knowledge.read
+          required: true
+          on_missing: request_provider_selection
+        - capability: knowledge.write
+          required: true
+          on_missing: return_draft
+      conflicts_with: []
+
+  skills-contribution-workflow:
+    metadata:
+      exposure: resource
+      kind: operating
+      scope: task
+      activation:
+        mode: intent
+        intents:
+          - improve an existing agent skill
+          - propose a reusable agent workflow
+          - decide whether guidance belongs in a project or central catalog
+        events:
+          - skill.feedback_detected
+          - reusable_workflow_detected
+        tags:
+          - agent-skills
+          - contribution
+        examples:
+          - This skill gave incorrect routing advice; prepare an evidence-backed improvement.
+          - Turn the repeatable release workflow from this task into a shared skill proposal.
+      avoid_when:
+        - The guidance is proprietary, repository-specific, or still too experimental to share.
+        - The request is to change application code rather than agent operating guidance.
+      enforcement: advisory
+      priority: 80
+      requires:
+        - capability: issue.search
+          required: true
+          on_missing: return_draft
+        - capability: issue.create
+          required: false
+          on_missing: return_draft
+        - capability: source.propose_change
+          required: false
+          on_missing: return_draft
+      conflicts_with: []
+
+  supabase-best-practices:
+    metadata:
+      exposure: resource
+      kind: task
+      scope: repository
+      activation:
+        mode: intent
+        intents:
+          - design or change a Postgres schema
+          - create or review a database migration
+          - diagnose query performance or local database reproducibility
+        events:
+          - database.schema_changed
+          - migration.created
+          - database.warning_detected
+        tags:
+          - postgres
+          - supabase
+          - migrations
+        examples:
+          - Add normalized tables and a migration for team memberships.
+          - Review this slow query and its indexes before denormalizing the model.
+      avoid_when:
+        - The task only reads existing data and makes no schema, migration, policy, or query change.
+        - The database is not PostgreSQL or Supabase and the relational guidance does not transfer.
+      enforcement: advisory
+      priority: 80
+      requires:
+        - capability: source.read
+          required: true
+          on_missing: warn
+        - capability: database.inspect_schema
+          required: false
+          on_missing: warn
+        - capability: command.execute
+          required: false
+          on_missing: return_draft
+      conflicts_with: []
+
+  swift-strict-concurrency:
+    metadata:
+      exposure: resource
+      kind: task
+      scope: repository
+      activation:
+        mode: intent
+        intents:
+          - write or review Swift 6 code
+          - fix strict concurrency diagnostics
+          - run Swift warnings-as-errors verification
+        events:
+          - swift.code_changed
+          - compiler.warning_detected
+          - verification.started
+        tags:
+          - swift
+          - concurrency
+          - verification
+        examples:
+          - Fix the Sendable warning at this Vapor request boundary.
+          - Refactor this SwiftUI service for Swift 6 strict concurrency and verify the build is warning-free.
+      avoid_when:
+        - The task does not touch Swift code, Swift build settings, or Swift compiler diagnostics.
+        - The request is only to explain concurrency concepts without changing or verifying a Swift project.
+      enforcement: required
+      priority: 90
+      requires:
+        - capability: source.read
+          required: true
+          on_missing: fail_activation
+        - capability: command.execute
+          required: false
+          on_missing: return_draft
+        - capability: issue.create
+          required: false
+          on_missing: return_draft
+      conflicts_with: []
+
+  ui-grammar:
+    metadata:
+      exposure: resource
+      kind: task
+      scope: task
+      activation:
+        mode: intent
+        intents:
+          - write or review user-facing interface copy
+          - fix capitalization or count-driven grammar
+          - audit labels, buttons, headings, empty states, or errors
+        events:
+          - ui.copy_changed
+          - design.review_started
+        tags:
+          - user-interface
+          - copy
+          - accessibility
+        examples:
+          - Audit this component for inconsistent button capitalization.
+          - Fix the singular and plural text for the search result count.
+      avoid_when:
+        - The text is source-code terminology, a protocol value, or a brand name rather than user-facing copy.
+        - The task changes only layout, color, or interaction behavior and does not touch interface text.
+      enforcement: advisory
+      priority: 65
+      requires:
+        - capability: source.read
+          required: false
+          on_missing: warn
+        - capability: source.propose_change
+          required: false
+          on_missing: return_draft
+      conflicts_with: []

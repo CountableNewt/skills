@@ -33,7 +33,7 @@ If `swift build`, `swift test`, `xcodebuild`, or another command you run surface
 Prefer resolving surfaced diagnostics as part of the current change when the fix is clear, low risk, and consistent with the task.
 
 5. **Track warnings that cannot be fixed safely inline.**
-If a surfaced warning cannot be handled cleanly within the current task, create or update a follow-up item in the project's primary tracker and report that explicitly. Prefer Linear when the project uses it; otherwise use the repository's normal issue tracker. When the project uses this repository's workflow, follow [linear-workflow/SKILL.md](../linear-workflow/SKILL.md).
+If a surfaced warning cannot be handled cleanly within the current task, create or update a follow-up item in the project's primary tracker and report that explicitly. Prefer Linear when the project uses it; otherwise use the repository's normal issue tracker. Activate the available issue-tracking workflow instead of depending on a sibling package path.
 
 6. **Prefer real concurrency correctness over escape hatches.**
 Favor actor isolation, `Sendable` conformance, immutable state, and clear async ownership boundaries. Do not reach first for `@unchecked Sendable`, `nonisolated(unsafe)`, blanket `@preconcurrency`, or suppression-style workarounds.
