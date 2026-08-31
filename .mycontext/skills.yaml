@@ -12,10 +12,9 @@ skills:
           - plan work linked to an issue
           - update project status and verification
         events:
-          - task.started
-          - scope.changed
-          - blocker.detected
-          - verification.completed
+          - blocker_encountered
+          - follow_up_work_identified
+          - task_completed
         tags:
           - project-management
           - issue-tracking
@@ -51,8 +50,8 @@ skills:
           - capture a specification, decision, runbook, or project note
           - organize durable project knowledge in Notion
         events:
-          - documentation.requested
-          - decision.recorded
+          - follow_up_work_identified
+          - task_completed
         tags:
           - documentation
           - notion
@@ -89,8 +88,10 @@ skills:
           - propose a reusable agent workflow
           - decide whether guidance belongs in a project or central catalog
         events:
-          - skill.feedback_detected
-          - reusable_workflow_detected
+          - skill_inadequate
+          - skill_ambiguous
+          - instruction_conflict_detected
+          - follow_up_work_identified
         tags:
           - agent-skills
           - contribution
@@ -126,9 +127,8 @@ skills:
           - create or review a database migration
           - diagnose query performance or local database reproducibility
         events:
-          - database.schema_changed
-          - migration.created
-          - database.warning_detected
+          - test_failed
+          - security_concern_detected
         tags:
           - postgres
           - supabase
@@ -165,9 +165,8 @@ skills:
           - fix strict concurrency diagnostics
           - run Swift warnings-as-errors verification
         events:
-          - swift.code_changed
-          - compiler.warning_detected
-          - verification.started
+          - test_failed
+          - blocker_encountered
         tags:
           - swift
           - concurrency
@@ -204,8 +203,7 @@ skills:
           - fix capitalization or count-driven grammar
           - audit labels, buttons, headings, empty states, or errors
         events:
-          - ui.copy_changed
-          - design.review_started
+          - instruction_conflict_detected
         tags:
           - user-interface
           - copy
